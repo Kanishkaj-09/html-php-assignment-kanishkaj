@@ -88,6 +88,19 @@ foreach ($transactions as $txn) {
 echo "\nFinal Balance: Rs.$balance\n";
 ?>
 
+OUTPUT:
+Bank Transactions for John Doe
+Starting Balance: Rs.1000
+
+Deposited Rs.500 | New Balance: Rs.1500
+Withdrew Rs.200 | New Balance: Rs.1300
+Withdrawal of Rs.1500 FAILED — Insufficient Balance! Current Balance: Rs.1300
+Deposited Rs.100 | New Balance: Rs.1400
+
+Final Balance: Rs.1400
+
+
+
 
 
 
