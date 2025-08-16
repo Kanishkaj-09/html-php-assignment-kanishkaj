@@ -20,15 +20,7 @@ print_r($colors);
 ?>
 
 OUTPUT:
-Removed: red <br>Array
-(
-    [0] => green
-    [1] => blue
-)
-<br>After adding: Array
-(
-    [0] => yellow
-    [1] => purple
-    [2] => green
-    [3] => blue
-)
+Removed: red 
+Array ([0] => green [1] => blue)
+After adding: 
+Array([0] => yellow [1] => purple [2] => green [3] => blue)
