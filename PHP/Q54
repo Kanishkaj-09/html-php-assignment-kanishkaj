@@ -1,0 +1,71 @@
+Design a PHP program that simulates a ticket booking queue using built-in array functions.
+
+A ticket booking queue can be simulated in PHP using array functions like:
+array_push() → add a customer to the end of the queue
+array_shift() → remove (serve) the customer from the front of the queue
+That’s exactly how a queue works (FIFO – First In, First Out).
+
+CODE:
+<?php
+// Initialize an empty queue
+$queue = array();
+
+// Function to add customer to the queue
+function addCustomer(&$queue, $name) {
+    array_push($queue, $name); // add to the end
+    echo "$name has joined the booking queue.<br>";
+}
+
+// Function to serve customer (remove from queue)
+function serveCustomer(&$queue) {
+    if (!empty($queue)) {
+        $served = array_shift($queue); // remove from the front
+        echo "$served's ticket has been booked!<br>";
+    } else {
+        echo "No customers in the queue.<br>";
+    }
+}
+
+// Function to display the queue
+function showQueue($queue) {
+    if (!empty($queue)) {
+        echo "Current Queue: " . implode(" → ", $queue) . "<br><br>";
+    } else {
+        echo "Queue is empty.<br><br>";
+    }
+}
+
+// Simulation
+addCustomer($queue, "Alice");
+addCustomer($queue, "Bob");
+addCustomer($queue, "Charlie");
+
+showQueue($queue);
+
+serveCustomer($queue);
+showQueue($queue);
+
+serveCustomer($queue);
+showQueue($queue);
+
+serveCustomer($queue);
+showQueue($queue);
+
+serveCustomer($queue); // testing when empty
+?>
+
+OUTPUT:
+Alice has joined the booking queue.
+Bob has joined the booking queue.
+Charlie has joined the booking queue.
+Current Queue: Alice → Bob → Charlie
+
+Alice's ticket has been booked!
+Current Queue: Bob → Charlie
+
+Bob's ticket has been booked!
+Current Queue: Charlie
+Charlie's ticket has been booked!
+Queue is empty.
+
+No customers in the queue.
