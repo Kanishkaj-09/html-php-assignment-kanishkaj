@@ -1,0 +1,12 @@
+Recognize how sessions are stored in PHP?
+
+SOLUTION:
+Sessions in PHP are stored on the server (not in the browser).
+By default, PHP stores session data in temporary files on the server.
+Each session is identified by a unique session ID (usually stored in a cookie named PHPSESSID on the client’s browser).
+When the user makes a request:
+Browser sends the session ID (via cookie or URL).
+PHP finds the corresponding session file (e.g., in /tmp on Linux or C:\xampp\tmp on Windows).
+Session data ($_SESSION) is loaded from that file.
+When the script ends, changes to $_SESSION are written back to the session file.
+
