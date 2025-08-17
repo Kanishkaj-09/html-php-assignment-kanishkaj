@@ -1,0 +1,15 @@
+Write a PHP program that keeps track of how many times a visitor has loaded the page.
+
+CODE:
+<?php
+session_start();
+if (isset($_SESSION['count'])) {
+    $_SESSION['count']++;
+} else {
+    $_SESSION['count'] = 1;
+}
+echo "You have visited this page " . $_SESSION['count'] . " times.";
+?>
+
+OUTPUT:
+You have visited this page 1 times.
