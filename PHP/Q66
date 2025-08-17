@@ -12,6 +12,16 @@ Functionality   	Provides additional mode parameter (COUNT_RECURSIVE)
 Performance      	No difference — both are identical in execution.	                  Same performance as count().
 
 
+SAMPLE CODE:
+<?php
+$arr = [1, 2, 3, 4, 5];
+echo "Using count(): " . count($arr) . "<br>";
+echo "Using sizeof(): " . sizeof($arr) . "<br>";
+?>
+
+OUTPUT:
+Using count(): 5
+Using sizeof(): 5
 
 Conclusion:
 No practical difference – sizeof() is just an alias of count().
