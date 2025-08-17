@@ -1,0 +1,67 @@
+Create a PHP Admin Login, Logout form using session variables.
+
+CODE:
+<?php
+session_start();
+
+// Hardcoded admin credentials (demo purpose)
+$admin_user = "admin";
+$admin_pass = "12345";
+
+// Logout handler
+if (isset($_GET['logout'])) {
+    session_unset();
+    session_destroy();
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit();
+}
+
+// Login handler
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    if ($username === $admin_user && $password === $admin_pass) {
+        $_SESSION['admin'] = $username;
+        header("Location: ".$_SERVER['PHP_SELF']);
+        exit();
+    } else {
+        $error = "Invalid Username or Password!";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login System</title>
+</head>
+<body>
+<?php if (isset($_SESSION['admin'])): ?>
+    <!-- Admin Dashboard -->
+    <h2>Welcome, <?php echo $_SESSION['admin']; ?>!</h2>
+    <p>You are now logged in as Admin.</p>
+    <a href="?logout=true">Logout</a>
+<?php else: ?>
+    <!-- Login Form -->
+    <h2>Admin Login</h2>
+    <?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
+
+    <form method="post" action="">
+        <label>Username:</label>
+        <input type="text" name="username" required><br><br>
+
+        <label>Password:</label>
+        <input type="password" name="password" required><br><br>
+
+        <input type="submit" value="Login">
+    </form>
+<?php endif; ?>
+</body>
+</html>
+
+HOW IT WORKS:
+Login Form → User enters username & password.
+If correct (admin / 12345), session variable $_SESSION['admin'] is set.
+Admin Dashboard is displayed when session is active.
+Logout Link clears session and returns to login form.
