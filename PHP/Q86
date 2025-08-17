@@ -1,0 +1,54 @@
+PHP File functions with example program.
+
+SOLUTION:
+Function	                Purpose
+fopen()	                  Opens a file (for reading/writing).
+fread()	                  Reads data from an open file.
+fwrite()	                Writes data to an open file.
+fclose()	                Closes an open file.
+file_get_contents()	      Reads the entire file into a string.
+file_put_contents()	      Writes/overwrites data into a file.
+unlink()	                Deletes a file.
+feof()	                  Checks if end-of-file is reached.
+filesize()	              Returns the size of a file in bytes.
+
+CODE:
+<?php
+$filename = "demo.txt";
+
+// 1. Write content into file using fopen() and fwrite()
+$file = fopen($filename, "w"); // open in write mode
+fwrite($file, "Hello, this is a file handling example.\n");
+fwrite($file, "PHP makes file handling easy!");
+fclose($file);
+echo "Data written successfully.<br>";
+
+// 2. Read content using fopen() and fread()
+$file = fopen($filename, "r");
+$content = fread($file, filesize($filename));
+fclose($file);
+echo "<b>File Content:</b><br>" . nl2br($content) . "<br><br>";
+
+// 3. Append content using file_put_contents()
+file_put_contents($filename, "\nThis line is appended.", FILE_APPEND);
+echo "Data appended successfully.<br>";
+
+// 4. Read file again using file_get_contents()
+$content = file_get_contents($filename);
+echo "<b>Updated File Content:</b><br>" . nl2br($content) . "<br><br>";
+
+// 5. Delete file using unlink()
+if (unlink($filename)) {
+    echo "File '$filename' deleted successfully.";
+} else {
+    echo "Error deleting file.";
+}
+?>
+
+OUTPUT FLOW:
+1. Creates a file demo.txt.
+2. Writes text into it.
+3. Reads and displays contents.
+4. Appends more text.
+5. Displays updated file contents.
+6. Deletes the file.
