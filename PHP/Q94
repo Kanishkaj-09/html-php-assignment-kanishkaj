@@ -1,0 +1,24 @@
+Evaluate the different file handling modes available in PHP with appropriate examples.
+
+PHP’s fopen() function requires a mode argument. Common file modes:
+
+Mode	     Description	                                                          Example
+"r"	       Open for read only; pointer at beginning	                              $f = fopen("data.txt", "r");
+"r+"	     Open for read & write; pointer at beginning	                          $f = fopen("data.txt", "r+");
+"w"      	 Open for write only; truncate file to 0 length or create new	          $f = fopen("data.txt", "w");
+"w+"	     Open for read & write; truncate file or create new	                    $f = fopen("data.txt", "w+");
+"a"	       Open for write only; append at end; create new if not exists	          $f = fopen("data.txt", "a");
+"a+"	     Open for read & write; pointer at end; create new if not exists	      $f = fopen("data.txt", "a+");
+"x"      	 Create & open for write only; error if file exists	                    $f = fopen("new.txt", "x");
+"x+"	     Create & open for read & write; error if file exists	                  $f = fopen("new.txt", "x+");
+
+Example:
+Writing and reading with w+
+<?php
+$file = fopen("example.txt", "w+");
+fwrite($file, "Hello PHP File Handling!");
+rewind($file); // Move pointer back to beginning
+echo fread($file, filesize("example.txt"));
+fclose($file);
+?>
+
