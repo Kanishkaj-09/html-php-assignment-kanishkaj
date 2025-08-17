@@ -1,0 +1,24 @@
+Construct a PHP program to read a file using file operation.
+
+CODE:
+<?php
+$filename = "sample.txt";  // File to read
+
+// Check if file exists
+if (file_exists($filename)) {
+    $file = fopen($filename, "r");  // Open file in read mode
+
+    echo "<h3>File Content:</h3>";
+    // Read file line by line until end
+    while (!feof($file)) {
+        echo fgets($file) . "<br>";
+    }
+
+    fclose($file);  // Close file
+} else {
+    echo "File not found!";
+}
+?>
+
+OUTPUT:
+File not found!
