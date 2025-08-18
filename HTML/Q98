@@ -10,6 +10,27 @@ CODE:
 <?php
 session_start();
 
+// Check if admin session is set
+if (!isset($_SESSION["admin"])) {
+    header("Location: login.php"); // Redirect if not logged in
+    exit();
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h2>Welcome, <?php echo $_SESSION["admin"]; ?>!</h2>
+    <p>This is the protected Admin Dashboard.</p>
+    <a href="logout.php">Logout</a>
+</body>
+</html>
+
+<?php
+session_start();
+
 // If form submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
@@ -32,8 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <h2>Admin Login</h2>
-    <?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
-
+    <?php if (!empty($error)) echo "<p style='color:red;'>
     <form method="post" action="">
         <label>Username:</label>
         <input type="text" name="username" required><br><br>
@@ -45,3 +65,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 </body>
 </html>
+
+<?php
+session_start();
+session_unset();     // Remove all session variables
+session_destroy();   // Destroy the session
+header("Location: login.php"); // Redirect to login page
+exit();
+?>
