@@ -1,0 +1,40 @@
+Develop a PHP program to use session variables and start a session.
+
+SOLUTION:
+Explanation:
+session_start() → Must be called before using any $_SESSION variables.
+$_SESSION['username'] → Stores data across multiple pages.
+print_r($_SESSION) → Displays all current session values.
+The session persists until the user closes the browser or session_destroy() is called.
+
+CODE:
+<?php
+// Start the session
+session_start();
+
+// Check if session variable 'username' is set
+if (!isset($_SESSION['username'])) {
+    // Assign a value to session variable
+    $_SESSION['username'] = "Kanishka";
+    $_SESSION['role'] = "Student";
+    echo "Session variables are set.<br>";
+} else {
+    echo "Welcome back, " . $_SESSION['username'] . "!<br>";
+    echo "Your role is: " . $_SESSION['role'] . "<br>";
+}
+
+// Display all session variables
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
+?>
+
+OUTPUT:
+Session variables are set.<br><pre>Array
+(
+    [username] => Kanishka
+    [role] => Student
+)
+</pre>
+
+
