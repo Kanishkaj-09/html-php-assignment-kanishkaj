@@ -1,0 +1,28 @@
+Identify, how a cookie’s value can be retrieved in a web application?
+
+SOLUTION:
+Retrieving a Cookie Value:
+1. To set a cookie, we use setcookie().
+2. To retrieve a cookie, we use $_COOKIE['cookie_name'].
+
+CODE:
+<?php
+// Set a cookie (valid for 1 hour)
+setcookie("username", "Kanishka", time() + 3600, "/");
+
+// Retrieve cookie value
+if (isset($_COOKIE["username"])) {
+    echo "Cookie Value: " . $_COOKIE["username"];
+} else {
+    echo "Cookie is not set yet!";
+}
+?>
+
+OUTPUT:
+Cookie is not set yet!
+
+Key Points:
+1. setcookie() must be called before any HTML output.
+2. Cookies are stored on the client (browser) and sent back with every request.
+3. To check if a cookie exists, always use isset($_COOKIE['name']).
+4. Cookie values are available on subsequent page loads (not immediately after setting).
